@@ -6,6 +6,8 @@ So far I have:
 - 3️⃣ Utilized the Matplotlib library to visualize the CSV data
 
 ## Current Visualization
+### Apple Data Visualization: 
+![AAPL Data](aapl_data.png)
 
 ## To Use Currently:
 1. Clone the repository

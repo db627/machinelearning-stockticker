@@ -13,23 +13,23 @@ def getStock(ticker):
     tick_hist = tick.history(period="max")
     return tick_hist
 
-def tickerToJSON(ticker):
+def tickerToCSV(ticker):
     global DATA_PATH
     sanitized_ticker = sanitize_ticker(ticker)
     DATA_PATH = f"{sanitized_ticker}_data.csv"
 
     if os.path.exists(DATA_PATH):
         print(f"Loading data from {DATA_PATH}...")
-        data = pd.read_csv(DATA_PATH)
+        data = pd.read_csv(DATA_PATH, index_col=0) 
     else:
         print(f"Fetching data for {ticker}...")
         data = getStock(ticker)
-        data.to_json(DATA_PATH)
+        data.to_csv(DATA_PATH) 
         print(f"Data saved to {DATA_PATH}")
 
     return data
 
 ticker = input("Enter a stock ticker symbol: ").strip()
-data = tickerToJSON(ticker)
+data = tickerToCSV(ticker)
 data.plot.line(y="Close", use_index=True)
 plt.show()
